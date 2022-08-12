@@ -1,4 +1,3 @@
-
 include(FetchContent)
 FetchContent_Declare(
 	googletest
@@ -8,7 +7,14 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(tests test.cpp)
+
+enable_testing()
+
+add_executable(QueueTests test.cpp)
 
 include_directories(${CMAKE_SOURCE_DIR}/context)
-target_link_libraries(tests gtest_main context)
+target_link_libraries(QueueTests gtest_main context)
+
+include(GoogleTest)
+
+gtest_discover_tests(QueueTests)
